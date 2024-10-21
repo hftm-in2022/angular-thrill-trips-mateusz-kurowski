@@ -1,27 +1,24 @@
-# AngularThrillTripsMateuszKurowski
+# Thrill Trips
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.8.
+Thrill Trips is supposed to be a web application for people who are adrenaline addicts. Therefore I will present here a blog and if skills allow sort of a travel page together with blog entries. Main topics will be:
 
-## Development server
+- Snow sports (snowboard, skiing)
+- Water sports (windsurfing, surfing)
+- Motor sports (motocross, rally)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Why?
 
-## Code scaffolding
+Well this is the most common and most interesting question. As my README is usually long, waaaay too long I will keep this short and
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. I love to snowboard. If it wasn't for school I would be each weekend on the slope
+2. I picked up surfing a year ago and whenever time allows (and wife and money 😅) I try to find a good connection flight and train more.
+3. I was born in the city which is commonly known as the Mekka of Polish Motocross, so connect the dots. Sadly my carrer in motosport was cut short by driving too fast and having overprotective parents 🤣
 
-## Build
+## Project status
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. Iteration 0, for more details see the [Setup](SETUP.md) document which is stored in this repository.
 
-## Running unit tests
+---
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Credit notes:
+Created by Mateusz supported by Milka 🐈 with the power of 🍫 and ☕
