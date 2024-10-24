@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
@@ -10,11 +10,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './blog-card.component.html',
   styleUrl: './blog-card.component.scss',
 })
-export class BlogCardComponent implements OnInit {
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
-
+export class BlogCardComponent {
   title = 'Thrill Trips by Mateusz Kurowski';
   name = '';
 
