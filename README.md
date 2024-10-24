@@ -17,6 +17,38 @@ Well this is the most common and most interesting question. As my README is usua
 ## Project status
 
 1. Iteration 0, for more details see the [Setup](SETUP.md) document which is stored in this repository.
+2. Added the demo as requested.
+   - Created custom component blog-card.
+   - Logo click as well as a button implemented.
+     ```
+     <img [src]="imageUrl" alt="dynamic image" class="welcome-picture" tabindex="0" (click)="onLogoClicked()"
+         (keydown)="onLogoKeyDown($event)" />
+     ```
+   - if implemented
+     ```
+     <h1 *ngIf="name">Hello, {{ name }}! </h1>
+     ```
+   - for implemented (though commented out as it doesn't really make sense at the moment)
+     ```
+     <div *ngFor="let trip of trips; let i = index">
+     <img [src]="imageUrl" alt="dynamic image" class="welcome-picture" tabindex="0" (click)="onLogoClicked()"
+         (keydown)="onLogoKeyDown($event)" />
+     </div>
+     ```
+   - ngClass implemented
+     ```
+     <h1 [ngClass]="{<!-- check blog-card.component.html, lines 13-17 -->}">
+     </h1>
+     ```
+   - ngStyle implemented
+     ```
+      <div [ngStyle]="{<!-- check blog-card.component.html, lines 28-35 -->}
+      </div>
+     ```
+   - ngModel (2-way binding) implemented
+     ```
+     <input class="demo" [(ngModel)]="name" (keyup)="onKeyUp(name)">
+     ```
 
 ---
 

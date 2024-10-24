@@ -1,0 +1,56 @@
+<div class="app-card">
+  <!-- Remove the comment to have a funcitoning ngFor and comment the img below on line 7, else it doesn't make sense here!
+    <div *ngFor="let trip of trips; let i = index">
+        <img [src]="imageUrl" alt="dynamic image" class="welcome-picture" tabindex="0" (click)="onLogoClicked()"
+            (keydown)="onLogoKeyDown($event)" />
+    </div> -->
+  <img
+    [src]="imageUrl"
+    alt="dynamic image"
+    class="welcome-picture"
+    tabindex="0"
+    (click)="onLogoClicked()"
+    (keydown)="onLogoKeyDown($event)"
+  />
+
+  <h1 *ngIf="name">Hello, {{ name }}!</h1>
+
+  <h1 *ngIf="name">Welcome to {{ title }}!</h1>
+  <h1
+    [ngClass]="{
+      'hiking-style': currentActivity === 'Hiking',
+      'motocross-style': currentActivity === 'Motocross',
+      'snowboarding-style': currentActivity === 'Snowboarding',
+    }"
+  >
+    We present you {{ currentActivity }}!
+  </h1>
+
+  <p>Congratulations! You made it! 🎉</p>
+  <p>
+    Now to make this a bit more comfortable, please enter your name in the below
+    field!
+  </p>
+  <input class="demo" [(ngModel)]="name" (keyup)="onKeyUp(name)" />
+
+  <p>Press the button to see what we got!</p>
+  <button mat-raised-button color="primary" (click)="changeImage()">
+    Check this out
+  </button>
+
+  <div
+    [ngStyle]="{
+      'background-color':
+        currentActivity === 'Hiking'
+          ? 'lightgreen'
+          : currentActivity === 'Motocross'
+            ? 'lightcoral'
+            : 'lightblue',
+      padding: '10px',
+      'border-radius': '5px',
+      'margin-top': '20px',
+    }"
+  >
+    Currently viewing: {{ currentActivity }}
+  </div>
+</div>
