@@ -1,42 +1,36 @@
-input.demo {
-  margin-top: 15px;
-  border: 2px solid black;
-  width: 300px;
-  height: 30;
-  font-size: 15px;
-}
-
-.app-card {
-  width: 400px;
-  background-color: rgb(192, 197, 188);
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(78, 74, 74, 0.1);
-  padding: 20px;
-  margin: 20px auto;
+.card {
   text-align: center;
-  border: 2px;
-  border-color: black;
-}
-
-.app-card img {
-  margin-top: 20px;
-  width: 100%;
-  height: auto;
-  max-width: 400px;
+  /* Center-aligns text */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  /* Optional styling */
   border-radius: 8px;
+  /* Optional styling */
+  margin: 16px 0;
 }
 
-.hiking-style {
-  color: green;
-  font-weight: bold;
+.post-image {
+  max-width: 100%;
+  border-radius: 8px;
+  /* Optional styling */
+  margin-bottom: 16px;
 }
 
-.motocross-style {
-  color: orange;
-  font-style: italic;
+h2 {
+  margin: 8px 0;
 }
 
-.snowboarding-style {
-  color: blue;
-  text-decoration: underline;
+.post-meta {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.notice {
+  font-size: 0.9em;
+  color: gray;
 }

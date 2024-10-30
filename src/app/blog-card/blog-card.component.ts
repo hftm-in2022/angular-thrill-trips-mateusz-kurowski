@@ -1,46 +1,19 @@
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
+import { Component, Input } from '@angular/core';
+import { BlogPost } from '../models/blog-post.model';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-blog-card',
-  standalone: true,
-  imports: [FormsModule, MatButtonModule, CommonModule],
   templateUrl: './blog-card.component.html',
-  styleUrl: './blog-card.component.scss',
+  styleUrls: ['./blog-card.component.scss'],
+  standalone: true,
+  imports: [CommonModule],
 })
 export class BlogCardComponent {
-  title = 'Thrill Trips by Mateusz Kurowski';
-  name = '';
+  @Input() post!: BlogPost;
+  isExpanded = false;
 
-  trips = [
-    { imageUrl: '/images/thrill-trips.jpg', activity: 'Hiking' },
-    { imageUrl: '/images/thrill-trips1.jpg', activity: 'Motocross' },
-    { imageUrl: '/images/thrill-trips2.jpg', activity: 'Snowboarding' },
-  ];
-
-  currentImageIndex = 0;
-  imageUrl = this.trips[this.currentImageIndex].imageUrl;
-  currentActivity = this.trips[this.currentImageIndex].activity;
-
-  changeImage() {
-    this.currentImageIndex = (this.currentImageIndex + 1) % this.trips.length;
-    this.imageUrl = this.trips[this.currentImageIndex].imageUrl;
-    this.currentActivity = this.trips[this.currentImageIndex].activity;
-  }
-
-  onLogoClicked() {
-    alert('You clicked my Logo!🍾');
-  }
-
-  onKeyUp(newName: string) {
-    this.name = newName;
-  }
-
-  onLogoKeyDown(event: KeyboardEvent) {
-    if (event.key === 'Enter') {
-      this.onLogoClicked();
-    }
+  toggleExpand() {
+    this.isExpanded = !this.isExpanded;
   }
 }
