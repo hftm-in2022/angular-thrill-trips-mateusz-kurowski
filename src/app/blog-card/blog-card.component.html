@@ -5,25 +5,20 @@
     alt="{{ post.title }}"
     class="post-image"
   />
-
   <h2>{{ post.title }}</h2>
   <p *ngIf="post.author">By {{ post.author }}</p>
-  <p *ngIf="post.createdAt">Posted on {{ post.createdAt | date }}</p>
-  <p *ngIf="post.updatedAt && post.updatedAt !== post.createdAt">
-    Updated on {{ post.updatedAt | date }}
-  </p>
-
-  <div class="post-meta">
-    <p *ngIf="post.likes !== undefined">
-      {{ post.likes }} {{ post.likes === 1 ? "like" : "likes" }}
-    </p>
-    <p *ngIf="post.comments !== undefined">
-      {{ post.comments }} {{ post.comments === 1 ? "comment" : "comments" }}
-    </p>
-  </div>
-
   <p>{{ post.contentPreview }}</p>
 
-  <p *ngIf="post.createdByMe" class="notice">This post was created by you</p>
-  <p *ngIf="post.likedByMe" class="notice">You liked this post</p>
+  <button (click)="toggleExpand()" class="expand-button">
+    {{ isExpanded ? "Collapse" : "Expand" }}
+  </button>
+
+  <div *ngIf="isExpanded" class="extra-details">
+    <p><strong>Posted on:</strong> {{ post.createdAt }}</p>
+    <p *ngIf="post.updatedAt && post.updatedAt !== post.createdAt">
+      <strong>Updated on:</strong> {{ post.updatedAt }}
+    </p>
+    <p><strong>Likes:</strong> {{ post.likes }}</p>
+    <p><strong>Comments:</strong> {{ post.comments ?? 0 }}</p>
+  </div>
 </div>

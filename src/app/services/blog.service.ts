@@ -23,5 +23,9 @@ export class BlogService {
   getPosts(): Observable<BlogPostResponse> {
     return this.http.get<BlogPostResponse>(this.apiUrl);
   }
+
+  getPostId(id: string): Observable<BlogPost> {
+    return this.http.get<BlogPost>(`${this.apiUrl}/${id}`);
+  }
 }
 export type { BlogPost };
