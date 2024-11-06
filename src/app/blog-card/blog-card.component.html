@@ -1,56 +1,29 @@
-<div class="app-card">
-  <!-- Remove the comment to have a funcitoning ngFor and comment the img below on line 7, else it doesn't make sense here!
-    <div *ngFor="let trip of trips; let i = index">
-        <img [src]="imageUrl" alt="dynamic image" class="welcome-picture" tabindex="0" (click)="onLogoClicked()"
-            (keydown)="onLogoKeyDown($event)" />
-    </div> -->
+<div class="card">
   <img
-    [src]="imageUrl"
-    alt="dynamic image"
-    class="welcome-picture"
-    tabindex="0"
-    (click)="onLogoClicked()"
-    (keydown)="onLogoKeyDown($event)"
+    *ngIf="post.headerImageUrl"
+    [src]="post.headerImageUrl"
+    alt="{{ post.title }}"
+    class="post-image"
   />
 
-  <h1 *ngIf="name">Hello, {{ name }}!</h1>
-
-  <h1 *ngIf="name">Welcome to {{ title }}!</h1>
-  <h1
-    [ngClass]="{
-      'hiking-style': currentActivity === 'Hiking',
-      'motocross-style': currentActivity === 'Motocross',
-      'snowboarding-style': currentActivity === 'Snowboarding',
-    }"
-  >
-    We present you {{ currentActivity }}!
-  </h1>
-
-  <p>Congratulations! You made it! 🎉</p>
-  <p>
-    Now to make this a bit more comfortable, please enter your name in the below
-    field!
+  <h2>{{ post.title }}</h2>
+  <p *ngIf="post.author">By {{ post.author }}</p>
+  <p *ngIf="post.createdAt">Posted on {{ post.createdAt | date }}</p>
+  <p *ngIf="post.updatedAt && post.updatedAt !== post.createdAt">
+    Updated on {{ post.updatedAt | date }}
   </p>
-  <input class="demo" [(ngModel)]="name" (keyup)="onKeyUp(name)" />
 
-  <p>Press the button to see what we got!</p>
-  <button mat-raised-button color="primary" (click)="changeImage()">
-    Check this out
-  </button>
-
-  <div
-    [ngStyle]="{
-      'background-color':
-        currentActivity === 'Hiking'
-          ? 'lightgreen'
-          : currentActivity === 'Motocross'
-            ? 'lightcoral'
-            : 'lightblue',
-      padding: '10px',
-      'border-radius': '5px',
-      'margin-top': '20px',
-    }"
-  >
-    Currently viewing: {{ currentActivity }}
+  <div class="post-meta">
+    <p *ngIf="post.likes !== undefined">
+      {{ post.likes }} {{ post.likes === 1 ? "like" : "likes" }}
+    </p>
+    <p *ngIf="post.comments !== undefined">
+      {{ post.comments }} {{ post.comments === 1 ? "comment" : "comments" }}
+    </p>
   </div>
+
+  <p>{{ post.contentPreview }}</p>
+
+  <p *ngIf="post.createdByMe" class="notice">This post was created by you</p>
+  <p *ngIf="post.likedByMe" class="notice">You liked this post</p>
 </div>
