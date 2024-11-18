@@ -1,23 +1,11 @@
-<div class="blog-detail" *ngIf="blog; else loadingOrError">
+<div class="blog-detail">
   <button class="back-button" routerLink="/" (click)="navigateToOverview()">
     ← Back to Blogs
   </button>
-  <h1>{{ blog.title }}</h1>
-  <img
-    *ngIf="blog.headerImageUrl"
-    [src]="blog.headerImageUrl"
-    alt="{{ blog.title }}"
-  />
-  <p><strong>Author:</strong> {{ blog.author }}</p>
-  <p><strong>Created At:</strong> {{ blog.createdAt | date }}</p>
-  <p><strong>Updated At:</strong> {{ blog.updatedAt | date }}</p>
-  <p><strong>Likes:</strong> {{ blog.likes }}</p>
-  <p><strong>Liked By Me:</strong> {{ blog.likedByMe ? "Yes" : "No" }}</p>
-  <div class="blog-content">
-    <p>{{ blog.content }}</p>
-  </div>
-</div>
 
-<ng-template #loadingOrError>
-  <div>Loading blog details or no data available...</div>
-</ng-template>
+  <app-blog-detail-view *ngIf="blog" [blog]="blog"></app-blog-detail-view>
+
+  <ng-template #loadingOrError>
+    <div>Loading blog details or no data available...</div>
+  </ng-template>
+</div>

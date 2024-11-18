@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { BlogPost } from '../../core/models/blog-post.model';
 import { CommonModule } from '@angular/common';
 
@@ -11,4 +11,9 @@ import { CommonModule } from '@angular/common';
 })
 export class BlogCardComponent {
   @Input() blog!: BlogPost;
+  @Output() blogSelected = new EventEmitter<number>();
+
+  onCardClick(): void {
+    this.blogSelected.emit(this.blog.id);
+  }
 }

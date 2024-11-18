@@ -4,10 +4,11 @@ import { BlogService } from '../../core/services/blog.service';
 import { BlogPost } from '../../core/models/blog-post.model';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { BlogDetailViewComponent } from '../blog-detail-view/blog-detail-view.component';
 
 @Component({
   selector: 'app-blog-detail',
-  imports: [CommonModule],
+  imports: [CommonModule, BlogDetailViewComponent],
   standalone: true,
   templateUrl: './blog-detail.component.html',
   styleUrls: ['./blog-detail.component.scss'],
