@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BlogService } from '../services/blog.service';
-import { BlogPost } from '../models/blog-post.model';
+import { BlogService } from '../../core/services/blog.service';
+import { BlogPost } from '../../core/models/blog-post.model';
 import { CommonModule } from '@angular/common';
 
 @Component({

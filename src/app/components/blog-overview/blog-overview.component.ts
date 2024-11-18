@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BlogService } from '../services/blog.service';
-import { BlogPost } from '../models/blog-post.model';
+import { BlogService } from '../../core/services/blog.service';
+import { BlogPost } from '../../core/models/blog-post.model';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { BlogCardComponent } from '../blog-card/blog-card.component';

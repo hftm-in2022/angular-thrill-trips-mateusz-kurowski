@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BlogPost } from './models/blog-post.model';
-import { BlogService } from './services/blog.service';
+import { BlogPost } from './core/models/blog-post.model';
+import { BlogService } from './core/services/blog.service';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
