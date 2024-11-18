@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BlogService } from '../../core/services/blog.service';
 import { BlogPost } from '../../core/models/blog-post.model';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
@@ -15,10 +14,10 @@ import { BlogDetailViewComponent } from '../blog-detail-view/blog-detail-view.co
 })
 export class BlogDetailComponent implements OnInit {
   blog: BlogPost | null = null;
+  error: string | null = null;
 
   constructor(
     private route: ActivatedRoute,
-    private blogService: BlogService,
     private router: Router,
   ) {}
 
@@ -26,6 +25,8 @@ export class BlogDetailComponent implements OnInit {
     this.blog = this.route.snapshot.data['blog'];
 
     if (!this.blog) {
+      this.error =
+        'No blog data found. The blog you search for may have been deleted or does not exist anymore.';
       console.error('No blog data found.');
     }
   }

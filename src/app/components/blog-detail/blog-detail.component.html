@@ -3,9 +3,16 @@
     ← Back to Blogs
   </button>
 
-  <app-blog-detail-view *ngIf="blog" [blog]="blog"></app-blog-detail-view>
+  <ng-container *ngIf="blog; else errorTemplate">
+    <app-blog-detail-view [blog]="blog"></app-blog-detail-view>
+  </ng-container>
 
-  <ng-template #loadingOrError>
-    <div>Loading blog details or no data available...</div>
+  <ng-template #errorTemplate>
+    <div class="error-message">
+      <h2>
+        Whoa! It seems like the blog you're searching for doesn't exist...🤔
+      </h2>
+      <a>Let's go back to the blogs, ok?</a>
+    </div>
   </ng-template>
 </div>

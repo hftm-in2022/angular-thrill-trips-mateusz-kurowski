@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { ErrorPageComponent } from './components/error-page/error-page.component';
 
 export const routes: Routes = [
   {
@@ -15,5 +16,6 @@ export const routes: Routes = [
         (m) => m.blogDetailRoutes,
       ),
   },
-  { path: '**', redirectTo: '', pathMatch: 'full' },
+  { path: 'error', component: ErrorPageComponent },
+  { path: '**', redirectTo: '/error', pathMatch: 'full' },
 ];
