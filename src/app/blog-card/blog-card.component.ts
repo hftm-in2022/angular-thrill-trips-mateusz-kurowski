@@ -10,10 +10,5 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./blog-card.component.scss'],
 })
 export class BlogCardComponent {
-  @Input() post!: BlogPost;
-  isExpanded = false;
-
-  toggleExpand(): void {
-    this.isExpanded = !this.isExpanded;
-  }
+  @Input() blog!: BlogPost;
 }

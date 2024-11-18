@@ -2,18 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BlogService } from '../services/blog.service';
 import { BlogPost } from '../models/blog-post.model';
-import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-blog-detail',
-  standalone: true,
   imports: [CommonModule],
+  standalone: true,
   templateUrl: './blog-detail.component.html',
   styleUrls: ['./blog-detail.component.scss'],
 })
 export class BlogDetailComponent implements OnInit {
-  post$!: Observable<BlogPost>;
+  blog: BlogPost | null = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,10 +20,17 @@ export class BlogDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const postId = this.route.snapshot.paramMap.get('id');
-    if (postId) {
-      this.post$ = this.blogService.getPostId(postId);
-      console.log('Post Observable:', this.post$);
+    const blogId = this.route.snapshot.paramMap.get('id');
+    console.log('Blog ID from route:', blogId);
+
+    if (blogId) {
+      this.blogService.getPostId(blogId).subscribe({
+        next: (blog) => {
+          console.log('Fetched Blog:', blog);
+          this.blog = blog;
+        },
+        error: (err) => console.error('Error loading blog details:', err),
+      });
     }
   }
 }

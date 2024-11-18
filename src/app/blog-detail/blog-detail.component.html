@@ -1,20 +1,20 @@
-<div *ngIf="post$ | async as post" class="blog-detail">
-  <h1>{{ post.title }}</h1>
-  <p><strong>Author:</strong> {{ post.author }}</p>
-  <p><strong>Published on:</strong> {{ post.createdAt | date: "fullDate" }}</p>
+<div class="blog-detail" *ngIf="blog; else loadingOrError">
+  <h1>{{ blog.title }}</h1>
   <img
-    *ngIf="post.headerImageUrl"
-    [src]="post.headerImageUrl"
-    alt="{{ post.title }}"
-    class="header-image"
+    *ngIf="blog.headerImageUrl"
+    [src]="blog.headerImageUrl"
+    alt="{{ blog.title }}"
   />
-  <div class="content">
-    <p>{{ post.contentPreview }}</p>
-  </div>
-  <div class="likes">
-    <p><strong>Likes:</strong> {{ post.likes }}</p>
-  </div>
-  <div class="comments">
-    <p><strong>Comments:</strong> {{ post.comments ?? 0 }} comments</p>
+  <p><strong>Author:</strong> {{ blog.author }}</p>
+  <p><strong>Created At:</strong> {{ blog.createdAt | date }}</p>
+  <p><strong>Updated At:</strong> {{ blog.updatedAt | date }}</p>
+  <p><strong>Likes:</strong> {{ blog.likes }}</p>
+  <p><strong>Liked By Me:</strong> {{ blog.likedByMe ? "Yes" : "No" }}</p>
+  <div class="blog-content">
+    <p>{{ blog.content }}</p>
   </div>
 </div>
+
+<ng-template #loadingOrError>
+  <div>Loading blog details or no data available...</div>
+</ng-template>

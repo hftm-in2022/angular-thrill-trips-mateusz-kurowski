@@ -1,24 +1,13 @@
-<div class="card">
+<div class="blog-card">
   <img
-    *ngIf="post.headerImageUrl"
-    [src]="post.headerImageUrl"
-    alt="{{ post.title }}"
-    class="post-image"
+    *ngIf="blog.headerImageUrl"
+    [src]="blog.headerImageUrl"
+    alt="{{ blog.title }}"
   />
-  <h2>{{ post.title }}</h2>
-  <p *ngIf="post.author">By {{ post.author }}</p>
-  <p>{{ post.contentPreview }}</p>
-
-  <button (click)="toggleExpand()" class="expand-button">
-    {{ isExpanded ? "Collapse" : "Expand" }}
-  </button>
-
-  <div *ngIf="isExpanded" class="extra-details">
-    <p><strong>Posted on:</strong> {{ post.createdAt }}</p>
-    <p *ngIf="post.updatedAt && post.updatedAt !== post.createdAt">
-      <strong>Updated on:</strong> {{ post.updatedAt }}
-    </p>
-    <p><strong>Likes:</strong> {{ post.likes }}</p>
-    <p><strong>Comments:</strong> {{ post.comments ?? 0 }}</p>
-  </div>
+  <h2>{{ blog.title }}</h2>
+  <p *ngIf="blog.author">By {{ blog.author }}</p>
+  <p>{{ blog.contentPreview || "No preview available" }}</p>
+  <p *ngIf="blog.createdAt">Published: {{ blog.createdAt | date }}</p>
+  <p *ngIf="blog.likes">👍 {{ blog.likes }} Likes</p>
+  <p *ngIf="blog.comments">💬 {{ blog.comments }} Comments</p>
 </div>

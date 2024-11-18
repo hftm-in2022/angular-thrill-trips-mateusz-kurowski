@@ -3,6 +3,7 @@ export interface BlogPost {
   author?: string;
   comments?: number;
   contentPreview?: string;
+  content?: string;
   createdAt?: string;
   createdByMe?: boolean;
   headerImageUrl?: string;
