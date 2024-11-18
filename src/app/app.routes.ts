@@ -1,15 +1,19 @@
 import { Routes } from '@angular/router';
-import { BlogOverviewComponent } from './components/blog-overview/blog-overview.component';
-import { BlogDetailComponent } from './components/blog-detail/blog-detail.component';
 
 export const routes: Routes = [
   {
     path: '',
-    component: BlogOverviewComponent,
+    loadChildren: () =>
+      import('./components/blog-overview/blog-overview.routes').then(
+        (m) => m.blogOverviewRoutes,
+      ),
   },
   {
     path: 'blog/:id',
-    component: BlogDetailComponent,
+    loadChildren: () =>
+      import('./components/blog-detail/blog-detail.routes').then(
+        (m) => m.blogDetailRoutes,
+      ),
   },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
