@@ -23,17 +23,10 @@ export class BlogDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const blogId = this.route.snapshot.paramMap.get('id');
-    console.log('Blog ID from route:', blogId);
+    this.blog = this.route.snapshot.data['blog'];
 
-    if (blogId) {
-      this.blogService.getPostId(blogId).subscribe({
-        next: (blog) => {
-          console.log('Fetched Blog:', blog);
-          this.blog = blog;
-        },
-        error: (err) => console.error('Error loading blog details:', err),
-      });
+    if (!this.blog) {
+      console.error('No blog data found.');
     }
   }
 
