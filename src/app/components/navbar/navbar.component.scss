@@ -1,0 +1,27 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: gold; // Set the bar color to gold
+  color: #000;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+  .logo {
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .nav-link {
+    text-decoration: none;
+    color: inherit;
+    margin: 0 15px;
+    font-size: 1.2rem;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

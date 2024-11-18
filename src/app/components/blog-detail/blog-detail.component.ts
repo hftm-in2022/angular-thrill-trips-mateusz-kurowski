@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BlogService } from '../../core/services/blog.service';
 import { BlogPost } from '../../core/models/blog-post.model';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-blog-detail',
@@ -17,6 +18,7 @@ export class BlogDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private blogService: BlogService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -32,5 +34,10 @@ export class BlogDetailComponent implements OnInit {
         error: (err) => console.error('Error loading blog details:', err),
       });
     }
+  }
+
+  navigateToOverview(): void {
+    console.log('Navigating to overview...');
+    this.router.navigate(['/']);
   }
 }

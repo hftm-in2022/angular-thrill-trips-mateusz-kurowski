@@ -45,7 +45,7 @@ export class BlogOverviewComponent implements OnInit {
   }
 
   viewBlog(blogId: number): void {
-    console.log('Navigating to blog:', blogId); // Add this log to verify the method is called
-    this.router.navigate(['/blog', blogId]); // Navigate to the detail page
+    console.log('Navigating to blog:', blogId);
+    this.router.navigate(['/blog', blogId]);
   }
 }
