@@ -1,6 +1,6 @@
 import { ErrorHandler, Injectable, NgZone } from '@angular/core';
-import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -13,15 +13,14 @@ export class GlobalErrorHandler implements ErrorHandler {
 
   handleError(error: unknown): void {
     this.ngZone.run(() => {
-      if (
-        error instanceof HttpErrorResponse ||
-        (error instanceof Error && error.message.startsWith('404'))
-      ) {
-        console.error('Redirecting to error page:', error);
-        this.router.navigate(['/error']);
+      if (error instanceof HttpErrorResponse) {
+        console.error('HTTP Error:', error.message);
+        if (error.status >= 500) {
+          this.router.navigate(['/error']);
+        }
       } else {
         console.error('Unexpected Error:', error);
-        alert('An unexpected error occurred. Please try again.');
+        this.router.navigate(['/error']);
       }
     });
   }

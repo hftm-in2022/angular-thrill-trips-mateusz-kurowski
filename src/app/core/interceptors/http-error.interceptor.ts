@@ -1,30 +1,28 @@
-import { Injectable } from '@angular/core';
 import {
-  HttpEvent,
   HttpInterceptor,
-  HttpHandler,
   HttpRequest,
+  HttpHandler,
+  HttpEvent,
   HttpErrorResponse,
 } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Router } from '@angular/router';
 
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
-  constructor(private router: Router) {}
-
   intercept(
     req: HttpRequest<unknown>,
     next: HttpHandler,
   ): Observable<HttpEvent<unknown>> {
     return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {
-        console.error('HTTP Error occurred:', error);
+        console.error('Interceptor caught HTTP Error:', error.message);
 
-        if (error.status >= 400) {
-          console.log('Navigating to /error due to HTTP error...');
-          this.router.navigate(['/error']);
+        if (error.status === 404) {
+          console.warn('404 Error: Redirecting handled locally.');
+        } else if (error.status >= 500) {
+          alert('A server error occurred. Please try again later.');
         }
 
         return throwError(() => new Error(error.message));
