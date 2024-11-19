@@ -1,0 +1,7 @@
+<div class="blog-list">
+  <app-blog-card
+    *ngFor="let blog of blogs"
+    [blog]="blog"
+    (click)="viewBlog(blog.id)"
+  ></app-blog-card>
+</div>

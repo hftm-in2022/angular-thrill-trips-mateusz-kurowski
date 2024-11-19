@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BlogCardComponent } from './blog-card/blog-card.component';
-import { BlogPost } from './models/blog-post.model';
-import { BlogService } from './services/blog.service';
+import { BlogPost } from './core/models/blog-post.model';
+import { BlogService } from './core/services/blog.service';
+import { RouterOutlet } from '@angular/router';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   standalone: true,
-  imports: [CommonModule, BlogCardComponent],
+  imports: [CommonModule, RouterOutlet, NavbarComponent],
 })
 export class AppComponent implements OnInit {
   posts: BlogPost[] | undefined;

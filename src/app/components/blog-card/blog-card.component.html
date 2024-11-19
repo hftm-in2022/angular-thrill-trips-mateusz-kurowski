@@ -1,0 +1,13 @@
+<div class="blog-card">
+  <img
+    *ngIf="blog.headerImageUrl"
+    [src]="blog.headerImageUrl"
+    alt="{{ blog.title }}"
+  />
+  <h2>{{ blog.title }}</h2>
+  <p *ngIf="blog.author">By {{ blog.author }}</p>
+  <p>{{ blog.contentPreview || "No preview available" }}</p>
+  <p *ngIf="blog.createdAt">Published: {{ blog.createdAt | date }}</p>
+  <p *ngIf="blog.likes">👍 {{ blog.likes }} Likes</p>
+  <p *ngIf="blog.comments">💬 {{ blog.comments }} Comments</p>
+</div>

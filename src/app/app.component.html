@@ -1,5 +1,4 @@
-<div class="container">
-  <ng-container *ngIf="posts?.length">
-    <app-blog-card *ngFor="let post of posts" [post]="post"></app-blog-card>
-  </ng-container>
+<app-navbar></app-navbar>
+<div class="main-content">
+  <router-outlet></router-outlet>
 </div>

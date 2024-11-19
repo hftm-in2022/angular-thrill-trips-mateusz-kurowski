@@ -1,0 +1,18 @@
+<div class="blog-detail">
+  <button class="back-button" routerLink="/" (click)="navigateToOverview()">
+    ← Back to Blogs
+  </button>
+
+  <ng-container *ngIf="blog; else errorTemplate">
+    <app-blog-detail-view [blog]="blog"></app-blog-detail-view>
+  </ng-container>
+
+  <ng-template #errorTemplate>
+    <div class="error-message">
+      <h2>
+        Whoa! It seems like the blog you're searching for doesn't exist...🤔
+      </h2>
+      <a>Let's go back to the blogs, ok?</a>
+    </div>
+  </ng-template>
+</div>
