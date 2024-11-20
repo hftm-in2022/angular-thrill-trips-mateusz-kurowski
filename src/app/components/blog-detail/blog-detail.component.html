@@ -4,7 +4,7 @@
   </button>
 
   <ng-container *ngIf="blog; else errorTemplate">
-    <app-blog-detail-view [blog]="blog"></app-blog-detail-view>
+    <app-blog-detail-view [blog]="blog()"></app-blog-detail-view>
   </ng-container>
 
   <ng-template #errorTemplate>

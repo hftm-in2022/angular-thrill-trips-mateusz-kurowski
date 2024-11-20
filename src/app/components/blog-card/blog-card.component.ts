@@ -1,4 +1,9 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  output,
+} from '@angular/core';
 import { BlogPost } from '../../core/models/blog-post.model';
 import { CommonModule } from '@angular/common';
 
@@ -8,12 +13,23 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
   templateUrl: './blog-card.component.html',
   styleUrls: ['./blog-card.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BlogCardComponent {
-  @Input() blog!: BlogPost;
-  @Output() blogSelected = new EventEmitter<number>();
+  blog = input<BlogPost>();
+  blogSelected = output<number>();
 
   onCardClick(): void {
-    this.blogSelected.emit(this.blog.id);
+    const currentBlog = this.blog();
+    if (currentBlog) {
+      this.blogSelected.emit(currentBlog.id);
+    }
+  }
+
+  handleKeyDown(event: KeyboardEvent): void {
+    if (event.key === 'Enter' || event.key === ' ') {
+      this.onCardClick();
+      event.preventDefault();
+    }
   }
 }
