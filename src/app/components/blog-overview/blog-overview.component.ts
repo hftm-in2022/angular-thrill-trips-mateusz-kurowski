@@ -24,28 +24,21 @@ export class BlogOverviewComponent implements OnInit {
   error = signal<string | null>(null);
 
   constructor(
-    private blogService: BlogService,
+    public blogService: BlogService,
     private router: Router,
   ) {}
 
   ngOnInit(): void {
-    this.loadBlogs();
-  }
-
-  private loadBlogs(): void {
-    this.loading.set(true);
-    this.error.set(null);
-
+    this.blogService.loading.set(true);
     this.blogService.getPosts().subscribe({
       next: (response) => {
-        console.log('API Response:', response);
         this.blogs.set(response.data || []);
-        this.loading.set(false);
+        this.blogService.loading.set(false);
       },
       error: (err) => {
         this.error.set('Failed to load blogs. Please try again later.');
         console.error(err);
-        this.loading.set(false);
+        this.blogService.loading.set(false);
       },
     });
   }
