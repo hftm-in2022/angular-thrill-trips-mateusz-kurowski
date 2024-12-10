@@ -1,7 +1,11 @@
-<div class="blog-list">
+<div *ngIf="blogService.loading()" class="spinner">
+  <div class="spinner-circle"></div>
+</div>
+<div *ngIf="error()">{{ error() }}</div>
+<div *ngIf="!blogService.loading() && !error()" class="blog-list">
   <app-blog-card
-    *ngFor="let blog of blogs"
+    *ngFor="let blog of blogs()"
     [blog]="blog"
-    (click)="viewBlog(blog.id)"
+    (blogSelected)="viewBlog($event)"
   ></app-blog-card>
 </div>

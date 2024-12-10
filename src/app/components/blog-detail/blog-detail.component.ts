@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  signal,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BlogPost } from '../../core/models/blog-post.model';
 import { CommonModule } from '@angular/common';
@@ -11,10 +16,11 @@ import { BlogDetailViewComponent } from '../blog-detail-view/blog-detail-view.co
   standalone: true,
   templateUrl: './blog-detail.component.html',
   styleUrls: ['./blog-detail.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BlogDetailComponent implements OnInit {
-  blog: BlogPost | null = null;
-  error: string | null = null;
+  blog = signal<BlogPost | undefined>(undefined);
+  error = signal<string | undefined>(undefined);
 
   constructor(
     private route: ActivatedRoute,
@@ -22,12 +28,14 @@ export class BlogDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.blog = this.route.snapshot.data['blog'];
-
-    if (!this.blog) {
-      this.error =
-        'No blog data found. The blog you search for may have been deleted or does not exist anymore.';
+    const blogData = this.route.snapshot.data['blog'];
+    if (!blogData) {
+      this.error.set(
+        'No blog data found. The blog you searched for may have been deleted or does not exist anymore.',
+      );
       console.error('No blog data found.');
+    } else {
+      this.blog.set(blogData);
     }
   }
 

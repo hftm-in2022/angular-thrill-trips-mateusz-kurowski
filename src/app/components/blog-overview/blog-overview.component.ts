@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  signal,
+} from '@angular/core';
 import { BlogService } from '../../core/services/blog.service';
 import { BlogPost } from '../../core/models/blog-post.model';
 import { Router } from '@angular/router';
@@ -11,35 +16,29 @@ import { BlogCardComponent } from '../blog-card/blog-card.component';
   imports: [CommonModule, BlogCardComponent],
   templateUrl: './blog-overview.component.html',
   styleUrls: ['./blog-overview.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BlogOverviewComponent implements OnInit {
-  blogs: BlogPost[] = [];
-  loading = false;
-  error: string | null = null;
+  blogs = signal<BlogPost[]>([]);
+  loading = signal(false);
+  error = signal<string | null>(null);
 
   constructor(
-    private blogService: BlogService,
+    public blogService: BlogService,
     private router: Router,
   ) {}
 
   ngOnInit(): void {
-    this.loadBlogs();
-  }
-
-  private loadBlogs(): void {
-    this.loading = true;
-    this.error = null;
-
+    this.blogService.loading.set(true);
     this.blogService.getPosts().subscribe({
       next: (response) => {
-        console.log('API Response:', response);
-        this.blogs = response.data || [];
-        this.loading = false;
+        this.blogs.set(response.data || []);
+        this.blogService.loading.set(false);
       },
       error: (err) => {
-        this.error = 'Failed to load blogs. Please try again later.';
+        this.error.set('Failed to load blogs. Please try again later.');
         console.error(err);
-        this.loading = false;
+        this.blogService.loading.set(false);
       },
     });
   }
