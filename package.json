@@ -24,7 +24,7 @@
     "@angular/platform-browser": "^18.2.0",
     "@angular/platform-browser-dynamic": "^18.2.0",
     "@angular/router": "^18.2.0",
-    "@commitlint/cli": "^19.5.0",
+    "@commitlint/cli": "^19.6.1",
     "@commitlint/config-conventional": "^19.5.0",
     "commitlint": "^19.5.0",
     "eslint": "^9.13.0",
