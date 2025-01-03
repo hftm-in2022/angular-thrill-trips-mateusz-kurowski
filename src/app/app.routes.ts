@@ -16,6 +16,13 @@ export const routes: Routes = [
         (m) => m.blogDetailRoutes,
       ),
   },
+  {
+    path: 'add-blog',
+    loadChildren: () =>
+      import('./components/add-blog-page/add-blog-page.module').then(
+        (m) => m.AddBlogPageModule,
+      ),
+  },
   { path: 'error', component: ErrorPageComponent },
   { path: '**', redirectTo: '/error', pathMatch: 'full' },
 ];
