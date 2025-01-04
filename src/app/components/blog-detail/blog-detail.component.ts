@@ -41,6 +41,6 @@ export class BlogDetailComponent implements OnInit {
 
   navigateToOverview(): void {
     console.log('Navigating to overview...');
-    this.router.navigate(['/']);
+    this.router.navigate(['/overview']);
   }
 }
