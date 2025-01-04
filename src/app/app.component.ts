@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BlogPost } from './core/models/blog-post.model';
 import { BlogService } from './core/services/blog.service';
 import { RouterOutlet } from '@angular/router';
 import { SidebarComponent } from './core/sidebar/sidebar.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -12,13 +13,14 @@ import { SidebarComponent } from './core/sidebar/sidebar.component';
   standalone: true,
   imports: [CommonModule, RouterOutlet, SidebarComponent],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   posts: BlogPost[] | undefined;
+  private subscription = new Subscription();
 
   constructor(private blogService: BlogService) {}
 
   ngOnInit(): void {
-    this.blogService.getPosts().subscribe(
+    const sub = this.blogService.getPosts().subscribe(
       (response) => {
         this.posts = response.data;
         console.log(this.posts);
@@ -27,5 +29,10 @@ export class AppComponent implements OnInit {
         console.error('Error fetching posts:', error);
       },
     );
+    this.subscription.add(sub);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

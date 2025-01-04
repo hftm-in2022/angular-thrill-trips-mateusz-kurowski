@@ -3,12 +3,14 @@ import {
   Component,
   OnInit,
   signal,
+  OnDestroy,
 } from '@angular/core';
 import { BlogService } from '../../core/services/blog.service';
 import { BlogPost } from '../../core/models/blog-post.model';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { BlogCardComponent } from '../blog-card/blog-card.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-blog-overview',
@@ -18,7 +20,8 @@ import { BlogCardComponent } from '../blog-card/blog-card.component';
   styleUrls: ['./blog-overview.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BlogOverviewComponent implements OnInit {
+export class BlogOverviewComponent implements OnInit, OnDestroy {
+  private subscription = new Subscription();
   blogs = signal<BlogPost[]>([]);
   loading = signal(false);
   error = signal<string | null>(null);
@@ -30,7 +33,7 @@ export class BlogOverviewComponent implements OnInit {
 
   ngOnInit(): void {
     this.blogService.loading.set(true);
-    this.blogService.getPosts().subscribe({
+    const sub = this.blogService.getPosts().subscribe({
       next: (response) => {
         this.blogs.set(response.data || []);
         this.blogService.loading.set(false);
@@ -41,10 +44,15 @@ export class BlogOverviewComponent implements OnInit {
         this.blogService.loading.set(false);
       },
     });
+    this.subscription.add(sub);
   }
 
   viewBlog(blogId: number): void {
     console.log('Navigating to blog:', blogId);
     this.router.navigate(['/blog', blogId]);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }
