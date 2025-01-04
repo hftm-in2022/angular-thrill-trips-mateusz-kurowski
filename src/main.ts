@@ -4,7 +4,7 @@ import { provideRouter } from '@angular/router';
 import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
 import { routes } from './app/app.routes';
 import { ErrorHandler } from '@angular/core';
-import { GlobalErrorHandler } from './app/core/interceptors/global-error-handler.service';
+import { GlobalErrorHandler } from './app/core/services/global-error-handler.service';
 import { HttpErrorInterceptor } from './app/core/interceptors/http-error.interceptor';
 import { authConfig } from './app/core/auth/auth.config';
 import { provideAuth } from 'angular-auth-oidc-client';

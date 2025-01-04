@@ -3,7 +3,7 @@ import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { BlogPost } from '../models/blog-post.model';
-import { BlogService } from '../services/blog.service';
+import { BlogService } from './blog.service';
 
 @Injectable({
   providedIn: 'root',
