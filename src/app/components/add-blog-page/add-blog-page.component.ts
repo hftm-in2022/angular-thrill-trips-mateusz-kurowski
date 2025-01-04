@@ -44,6 +44,6 @@ export class AddBlogPageComponent {
 
   navigateToHome(): void {
     console.log('Navigating to home...');
-    this.router.navigate(['/']);
+    this.router.navigate(['/overview']);
   }
 }

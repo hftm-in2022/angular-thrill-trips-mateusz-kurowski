@@ -8,6 +8,7 @@ import { GlobalErrorHandler } from './app/core/interceptors/global-error-handler
 import { HttpErrorInterceptor } from './app/core/interceptors/http-error.interceptor';
 import { authConfig } from './app/core/auth/auth.config';
 import { provideAuth } from 'angular-auth-oidc-client';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -16,5 +17,6 @@ bootstrapApplication(AppComponent, {
     { provide: ErrorHandler, useClass: GlobalErrorHandler },
     { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
     provideAuth(authConfig),
+    provideAnimations(),
   ],
 });

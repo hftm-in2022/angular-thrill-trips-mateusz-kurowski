@@ -25,6 +25,13 @@ export const routes: Routes = [
       ),
     canActivate: [AuthenticationGuard],
   },
+  {
+    path: 'overview',
+    loadChildren: () =>
+      import('./components/blog-overview/blog-overview.routes').then(
+        (m) => m.blogOverviewRoutes,
+      ),
+  },
   { path: 'error', component: ErrorPageComponent },
   { path: '**', redirectTo: '/error', pathMatch: 'full' },
 ];
