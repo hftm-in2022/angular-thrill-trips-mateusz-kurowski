@@ -3,14 +3,14 @@ import { CommonModule } from '@angular/common';
 import { BlogPost } from './core/models/blog-post.model';
 import { BlogService } from './core/services/blog.service';
 import { RouterOutlet } from '@angular/router';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { SidebarComponent } from './core/sidebar/sidebar.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   standalone: true,
-  imports: [CommonModule, RouterOutlet, NavbarComponent],
+  imports: [CommonModule, RouterOutlet, SidebarComponent],
 })
 export class AppComponent implements OnInit {
   posts: BlogPost[] | undefined;
