@@ -5,9 +5,11 @@
   (keydown)="handleKeyDown($event)"
 >
   <img
-    *ngIf="blog()?.headerImageUrl"
-    [src]="blog()?.headerImageUrl"
-    alt="{{ blog()?.title }}"
+    [src]="
+      blog()?.headerImageUrl ||
+      'https://picsum.photos/seed/' + blog()?.id + '/348/300'
+    "
+    alt="{{ blog()?.title || 'Default Blog Image' }}"
   />
   <h2>{{ blog()?.title }}</h2>
   <p *ngIf="blog()?.author">By {{ blog()?.author }}</p>
