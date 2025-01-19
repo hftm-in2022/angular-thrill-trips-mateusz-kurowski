@@ -50,6 +50,22 @@ The demo shows the 3 major topics I wanted to focus on:
 7. Sprint 5 was implemented (more information to come later on -> Milestone 2)
 8. Sprint 6 was implemented (more information to come later on -> Milestone 2)
 9. Milestone 1 delivered
+10. Sprint 7 was implemented:
+    - for task 1, I created a test class for the blog-detail-view component.
+    - for task 2, I created a test class for the blog-overview component.
+    - for task 3, I created a test class for the blog service.
+    - mocks and spies are implemented in these classes, for example:
+      - created mocks objects with spies for their methods, example:
+        ```
+        blogService = jasmine.createSpyObj('BlogService', ['getPosts']);
+        router = jasmine.createSpyObj('Router', ['navigate']);
+        ```
+      - created static data to mimic the real one, example:
+        ```
+        const mockBlogs: BlogPost[] = [...];
+        const mockBlogResponse = { data: mockBlogs, pageIndex: 1, pageSize: 10, totalCount: 20, maxPageSize: 50 };
+        ```
+    - to perform a test run with coverage measurements to check the coverage of the tests I typed in `ng test` in the console a total of 20 tests were executed, all ended up in success.
 
 ---
 
