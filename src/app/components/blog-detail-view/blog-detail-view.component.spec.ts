@@ -38,7 +38,7 @@ describe('BlogDetailComponent', () => {
     });
 
     await TestBed.configureTestingModule({
-      imports: [BlogDetailComponent], // Using standalone component
+      imports: [BlogDetailComponent],
       providers: [
         { provide: Router, useValue: mockRouter },
         { provide: ActivatedRoute, useValue: mockActivatedRoute },
@@ -47,7 +47,7 @@ describe('BlogDetailComponent', () => {
 
     fixture = TestBed.createComponent(BlogDetailComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges(); // Ensure the template is updated
+    fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -72,8 +72,8 @@ describe('BlogDetailComponent', () => {
     const contentElement = fixture.nativeElement.querySelector(
       '.blog-detail-view > div',
     );
-    expect(contentElement).toBeTruthy(); // Ensure it exists
-    expect(contentElement.textContent).toContain(mockBlog.content); // Check content
+    expect(contentElement).toBeTruthy();
+    expect(contentElement.textContent).toContain(mockBlog.content);
   });
 
   it('should render comments if available', () => {
@@ -86,7 +86,6 @@ describe('BlogDetailComponent', () => {
   });
 
   it('should display a placeholder message if no comments are available', () => {
-    // Modify the comments to simulate no comments
     component.blog.set({ ...mockBlog, comments: [] });
     fixture.detectChanges();
 
