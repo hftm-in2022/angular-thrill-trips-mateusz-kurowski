@@ -28,7 +28,7 @@ export class BlogDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const blogData = this.route.snapshot.data['blog'];
+    const blogData = this.route.snapshot.data['blog']; // provideRouter(routes, withComponentInputBinding()) would set the route data from resolver directly to an inupt
     if (!blogData) {
       this.error.set(
         'No blog data found. The blog you searched for may have been deleted or does not exist anymore.',
@@ -40,7 +40,7 @@ export class BlogDetailComponent implements OnInit {
   }
 
   navigateToOverview(): void {
-    console.log('Navigating to overview...');
+    console.log('Navigating to overview...'); // no logs in production code
     this.router.navigate(['/overview']);
   }
 }

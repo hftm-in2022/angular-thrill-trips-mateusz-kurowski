@@ -12,4 +12,4 @@ import { ReactiveFormsModule } from '@angular/forms';
     RouterModule.forChild([{ path: '', component: AddBlogPageComponent }]),
   ],
 })
-export class AddBlogPageModule {}
+export class AddBlogPageModule {} // please use standalone components in angular 18+

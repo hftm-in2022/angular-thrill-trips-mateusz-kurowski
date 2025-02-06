@@ -44,6 +44,7 @@ export class SidebarComponent {
 
   constructor() {
     this.oidcSecurityService.checkAuth().subscribe((authResult) => {
+      // why subscribe and not define the field isAuthenticated as observable
       this.isAuthenticated = authResult.isAuthenticated;
       console.log('Auth Status:', this.isAuthenticated);
     });

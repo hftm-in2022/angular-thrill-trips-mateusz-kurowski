@@ -21,6 +21,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     const sub = this.blogService.getPosts().subscribe(
+      // why not use a resolver?
       (response) => {
         this.posts = response.data;
         console.log(this.posts);

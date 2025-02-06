@@ -32,7 +32,7 @@ export class BlogOverviewComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.blogService.loading.set(true);
+    this.blogService.loading.set(true); // a lot of state logic in the component
     const sub = this.blogService.getPosts().subscribe({
       next: (response) => {
         this.blogs.set(response.data || []);

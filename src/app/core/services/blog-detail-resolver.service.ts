@@ -9,6 +9,7 @@ import { BlogService } from './blog.service';
   providedIn: 'root',
 })
 export class BlogDetailResolver implements Resolve<BlogPost | null> {
+  // better use a ResoverFunction instead of classes
   constructor(private blogService: BlogService) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<BlogPost | null> {
@@ -16,6 +17,7 @@ export class BlogDetailResolver implements Resolve<BlogPost | null> {
 
     if (blogId) {
       return this.blogService.getPostId(blogId).pipe(
+        // return this.blogService.getPostId(blogId); would be fine
         catchError((error) => {
           console.error('Error fetching blog details:', error);
           return of(null);

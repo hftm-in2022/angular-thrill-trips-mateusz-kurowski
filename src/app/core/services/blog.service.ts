@@ -4,7 +4,7 @@ import { BehaviorSubject, finalize, Observable, switchMap, tap } from 'rxjs';
 import { BlogPost } from '../models/blog-post.model';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 
-interface BlogPostResponse {
+type BlogPostResponse = {
   data: BlogPost[];
   maxPageSize: number;
   pageIndex: number;
@@ -16,10 +16,11 @@ interface BlogPostResponse {
   providedIn: 'root',
 })
 export class BlogService {
+  // mix between backend service and state management.
   httpClient = inject(HttpClient);
   private oidcSecurityService = inject(OidcSecurityService);
   private apiUrl =
-    'https://d-cap-blog-backend---v2.whitepond-b96fee4b.westeurope.azurecontainerapps.io/entries';
+    'https://d-cap-blog-backend---v2.whitepond-b96fee4b.westeurope.azurecontainerapps.io/entries'; // use environment
 
   blogs$ = new BehaviorSubject<BlogPost[]>([]);
   loading = signal(false);

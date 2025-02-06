@@ -13,7 +13,7 @@ export class AddBlogPageComponent {
   blogForm: FormGroup;
 
   constructor(
-    private form: FormBuilder,
+    private form: FormBuilder, // use the new inject function instead constructor injection
     private blogService: BlogService,
     private router: Router,
   ) {
@@ -36,6 +36,7 @@ export class AddBlogPageComponent {
     if (this.blogForm.valid) {
       const newBlog = this.blogForm.value;
       this.blogService.savePost(newBlog).subscribe({
+        // don't subscribe to observable without unsubscribe
         next: () => this.router.navigate(['']),
         error: (err) => console.error('Failed to create blog:', err),
       });
@@ -43,6 +44,7 @@ export class AddBlogPageComponent {
   }
 
   navigateToHome(): void {
+    // unused code
     console.log('Navigating to home...');
     this.router.navigate(['/overview']);
   }

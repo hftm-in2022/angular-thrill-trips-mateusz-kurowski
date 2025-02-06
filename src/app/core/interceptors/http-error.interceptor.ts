@@ -25,7 +25,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
           alert('A server error occurred. Please try again later.');
         }
 
-        return throwError(() => new Error(error.message));
+        return throwError(() => new Error(error.message)); // why throwing the error, just call next()
       }),
     );
   }
